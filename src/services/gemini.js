@@ -1,5 +1,5 @@
 export async function askGemini(profile, answers) {
-  const response = await fetch("http://localhost:5000/recommend", {
+  const response = await fetch("https://ai-recommendation-app-3.onrender.com/recommend", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -19,29 +19,21 @@ export async function askGemini(profile, answers) {
   return data.message;
 }
 
-export async function askChat(
-  profile,
-  movie,
-  messages,
-  message
-) {
-  const response = await fetch(
-    "http://localhost:5000/chat",
-    {
-      method: "POST",
+export async function askChat(profile, movie, messages, message) {
+  const response = await fetch("https://ai-recommendation-app-3.onrender.com/chat", {
+    method: "POST",
 
-      headers: {
-        "Content-Type": "application/json",
-      },
+    headers: {
+      "Content-Type": "application/json",
+    },
 
-      body: JSON.stringify({
-        profile,
-        movie,
-        messages,
-        message,
-      }),
-    }
-  );
+    body: JSON.stringify({
+      profile,
+      movie,
+      messages,
+      message,
+    }),
+  });
 
   const data = await response.json();
 
