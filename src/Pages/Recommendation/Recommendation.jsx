@@ -101,7 +101,7 @@ function Recommendation() {
       return;
     }
 
-    updatedMessages.push({ sender: "bot", text: "جاري تحليل إجاباتك..." });
+    updatedMessages.push({ sender: "bot", text: "Gira is thinking..." });
     setMessages(updatedMessages);
     setInput("");
     setLoading(true);
@@ -134,7 +134,7 @@ function Recommendation() {
         { sender: "bot", text: result },
         {
           sender: "bot",
-          text: "يمكنك الآن التحدث معي بالعربية أو الإنجليزية عن الترشيح الحالي أو طلب ترشيح جديد.",
+          text: "You can now speak with me in Arabic or English about the current nomination or request a new nomination.",
         },
       ]);
     } catch (error) {
