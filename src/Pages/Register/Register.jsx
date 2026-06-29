@@ -56,7 +56,9 @@ function Register() {
       <div className="reg-page">
         <div className="reg-card">
           <div className="reg-logo">
-            <div className="reg-logo-icon">▶</div>
+            <div className="rec-bot-icon">
+              <i className="bi bi-robot"></i>
+            </div>
             <span className="reg-logo-text">
               Movie<span>AI</span>
             </span>
