@@ -28,9 +28,7 @@ function Register() {
 
     const users = JSON.parse(localStorage.getItem("users")) || [];
 
-    const userExists = users.find(
-      (user) => user.email === formData.email
-    );
+    const userExists = users.find((user) => user.email === formData.email);
 
     if (userExists) {
       alert("Email already exists");
@@ -59,27 +57,24 @@ function Register() {
     localStorage.setItem("users", JSON.stringify(users));
 
     const newUser2 = {
-  name: formData.name,
-  email: formData.email,
-  password: formData.password,
-};
+      name: formData.name,
+      email: formData.email,
+      password: formData.password,
+    };
 
-users.push(newUser2);
+    users.push(newUser2);
 
-localStorage.setItem("users", JSON.stringify(users));
+    localStorage.setItem("users", JSON.stringify(users));
 
-// تسجيل دخول تلقائي
-sessionStorage.setItem(
-  "currentUser",
-  JSON.stringify(newUser2)
-);
+    // تسجيل دخول تلقائي
+    sessionStorage.setItem("currentUser", JSON.stringify(newUser2));
 
-// أول مرة
-sessionStorage.setItem("firstLogin", "true");
+    // أول مرة
+    sessionStorage.setItem("firstLogin", "true");
 
-alert("Account Created Successfully");
+    alert("Account Created Successfully");
 
-navigate("/profile");
+    navigate("/profile");
   };
 
   return (
@@ -96,9 +91,7 @@ navigate("/profile");
           borderRadius: "20px",
         }}
       >
-        <h2 className="text-center fw-bold mb-2">
-          Create Account
-        </h2>
+        <h2 className="text-center fw-bold mb-2">Create Account</h2>
 
         <p className="text-center text-secondary mb-4">
           Join our recommendation platform
@@ -106,9 +99,7 @@ navigate("/profile");
 
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
-            <label className="form-label">
-              Full Name
-            </label>
+            <label className="form-label">Full Name</label>
 
             <input
               type="text"
@@ -122,9 +113,7 @@ navigate("/profile");
           </div>
 
           <div className="mb-3">
-            <label className="form-label">
-              Email
-            </label>
+            <label className="form-label">Email</label>
 
             <input
               type="email"
@@ -138,9 +127,7 @@ navigate("/profile");
           </div>
 
           <div className="mb-3">
-            <label className="form-label">
-              Password
-            </label>
+            <label className="form-label">Password</label>
 
             <input
               type="password"
@@ -154,9 +141,7 @@ navigate("/profile");
           </div>
 
           <div className="mb-3">
-            <label className="form-label">
-              Confirm Password
-            </label>
+            <label className="form-label">Confirm Password</label>
 
             <input
               type="password"
@@ -169,20 +154,14 @@ navigate("/profile");
             />
           </div>
 
-          <button
-            type="submit"
-            className="btn btn-success w-100"
-          >
+          <button type="submit" className="btn btn-success w-100">
             Register
           </button>
         </form>
 
         <p className="text-center mt-3">
           Already have an account?
-          <Link
-            to="/"
-            className="ms-2 text-decoration-none"
-          >
+          <Link to="/" className="ms-2 text-decoration-none">
             Login
           </Link>
         </p>
