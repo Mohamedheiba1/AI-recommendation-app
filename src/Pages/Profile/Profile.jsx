@@ -78,9 +78,9 @@ function Profile() {
           <div className="profile-header">
             <div className="profile-avatar-wrapper">
               <div className="profile-avatar">{getInitials(user.name)}</div>
-              <div className="avatar-edit-btn">
+              {/* <div className="avatar-edit-btn">
                 <i className="bi bi-pencil-fill"></i>
-              </div>
+              </div> */}
             </div>
             <div className="profile-name">{user.name}</div>
             <div className="profile-email">{user.email}</div>
