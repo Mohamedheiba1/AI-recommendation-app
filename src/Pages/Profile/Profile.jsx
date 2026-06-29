@@ -69,26 +69,25 @@ function Profile() {
   if (!editMode) {
     return (
       <div className="profile-page">
-        <div className="container" style={{ maxWidth: 680 }}>
-          {/* Banner */}
-          <div className="profile-banner"></div>
+        {/* Banner — full width */}
+        <div className="profile-banner"></div>
 
-          {/* Card */}
-          <div className="profile-card">
-            {/* Avatar + name */}
-            <div className="profile-header">
-              <div className="d-flex justify-content-center">
-                <div className="profile-avatar-wrapper">
-                  <div className="profile-avatar">{getInitials(user.name)}</div>
-                  <div className="avatar-edit-btn">
-                    <i className="bi bi-pencil-fill"></i>
-                  </div>
-                </div>
+        {/* Content wrapper */}
+        <div className="profile-content-wrapper">
+          {/* Avatar + name — overlaps banner */}
+          <div className="profile-header">
+            <div className="profile-avatar-wrapper">
+              <div className="profile-avatar">{getInitials(user.name)}</div>
+              <div className="avatar-edit-btn">
+                <i className="bi bi-pencil-fill"></i>
               </div>
-              <div className="profile-name">{user.name}</div>
-              <div className="profile-email">{user.email}</div>
             </div>
+            <div className="profile-name">{user.name}</div>
+            <div className="profile-email">{user.email}</div>
+          </div>
 
+          {/* Info card */}
+          <div className="profile-card">
             {/* Info grid */}
             <div className="profile-info-grid">
               <InfoItem
@@ -141,7 +140,7 @@ function Profile() {
               />
             </div>
 
-            {/* About Me — full width */}
+            {/* About Me — full row */}
             <div className="profile-info-about">
               <div className="info-icon-box icon-blue">
                 <i className="bi bi-person-lines-fill"></i>
@@ -176,13 +175,13 @@ function Profile() {
   /* ───── EDIT MODE ───── */
   return (
     <div className="profile-page">
-      <div className="container my-5" style={{ maxWidth: 680 }}>
+      <div className="edit-page-wrapper">
         <div className="edit-card">
           <h2 className="text-center">Edit Profile</h2>
 
           <form onSubmit={handleSubmit}>
-            <div className="row">
-              <div className="col-md-6 mb-3">
+            <div className="edit-grid-2">
+              <div className="mb-3">
                 <label className="form-label">Name</label>
                 <input
                   type="text"
@@ -192,7 +191,7 @@ function Profile() {
                   onChange={handleChange}
                 />
               </div>
-              <div className="col-md-6 mb-3">
+              <div className="mb-3">
                 <label className="form-label">Age</label>
                 <input
                   type="number"
@@ -204,84 +203,80 @@ function Profile() {
               </div>
             </div>
 
-            <div className="mb-3">
-              <label className="form-label">Gender</label>
-              <select
-                className="form-select"
-                name="gender"
-                value={user.gender}
-                onChange={handleChange}
-              >
-                <option value="">Choose...</option>
-                <option value="Male">Male</option>
-                <option value="Female">Female</option>
-              </select>
-            </div>
-
-            <div className="mb-3">
-              <label className="form-label">Favorite Movies</label>
-              <input
-                type="text"
-                className="form-control"
-                name="movies"
-                value={user.movies}
-                onChange={handleChange}
-              />
-            </div>
-
-            <div className="mb-3">
-              <label className="form-label">Favorite Games</label>
-              <input
-                type="text"
-                className="form-control"
-                name="games"
-                value={user.games}
-                onChange={handleChange}
-              />
-            </div>
-
-            <div className="mb-3">
-              <label className="form-label">Favorite Genres</label>
-              <input
-                type="text"
-                className="form-control"
-                name="genres"
-                value={user.genres}
-                onChange={handleChange}
-              />
-            </div>
-
-            <div className="mb-3">
-              <label className="form-label">Favorite Series</label>
-              <input
-                type="text"
-                className="form-control"
-                name="series"
-                value={user.series}
-                onChange={handleChange}
-              />
-            </div>
-
-            <div className="mb-3">
-              <label className="form-label">Favorite Music</label>
-              <input
-                type="text"
-                className="form-control"
-                name="music"
-                value={user.music}
-                onChange={handleChange}
-              />
-            </div>
-
-            <div className="mb-3">
-              <label className="form-label">Hobbies</label>
-              <input
-                type="text"
-                className="form-control"
-                name="hobbies"
-                value={user.hobbies}
-                onChange={handleChange}
-              />
+            <div className="edit-grid-3">
+              <div className="mb-3">
+                <label className="form-label">Gender</label>
+                <select
+                  className="form-select"
+                  name="gender"
+                  value={user.gender}
+                  onChange={handleChange}
+                >
+                  <option value="">Choose...</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                </select>
+              </div>
+              <div className="mb-3">
+                <label className="form-label">Favorite Movies</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  name="movies"
+                  value={user.movies}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="mb-3">
+                <label className="form-label">Favorite Games</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  name="games"
+                  value={user.games}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="mb-3">
+                <label className="form-label">Favorite Genres</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  name="genres"
+                  value={user.genres}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="mb-3">
+                <label className="form-label">Favorite Series</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  name="series"
+                  value={user.series}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="mb-3">
+                <label className="form-label">Favorite Music</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  name="music"
+                  value={user.music}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="mb-3">
+                <label className="form-label">Hobbies</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  name="hobbies"
+                  value={user.hobbies}
+                  onChange={handleChange}
+                />
+              </div>
             </div>
 
             <div className="mb-4">
