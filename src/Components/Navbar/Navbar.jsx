@@ -23,7 +23,7 @@ function Navbar() {
               <i  className="bi bi-robot"></i>
           </div>
         </div>
-          <span>GIRA AI</span>
+          <span style={{paddingTop:5}}>GIRA AI</span>
         </NavLink>
 
         <ul className="navbar-nav ms-auto align-items-center">
