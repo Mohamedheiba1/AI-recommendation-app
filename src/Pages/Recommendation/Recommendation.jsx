@@ -40,8 +40,6 @@ function Recommendation() {
   const [title, setTitle] = useState(savedChat.title || "");
 
   const [category, setCategory] = useState(savedChat.category || "");
-  const [loading, setLoading] = useState(false);
-  const [chatMode, setChatMode] = useState(false);
   useEffect(() => {
     localStorage.setItem(
       chatKey,
