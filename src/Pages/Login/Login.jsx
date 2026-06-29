@@ -26,21 +26,30 @@ function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     const users = JSON.parse(localStorage.getItem("users")) || [];
+
     const user = users.find(
       (u) => u.email === formData.email && u.password === formData.password,
     );
+
     if (!user) {
-      showMessage("Invalid Email or Password");
+      showMessage("Invalid Email or Password", "error");
       return;
     }
+
     sessionStorage.setItem("currentUser", JSON.stringify(user));
-    showMessage(`Welcome ${user.name}`);
-    navigate("/profile");
+
+    showMessage(`Welcome ${user.name}`, "success");
+
+    setTimeout(() => {
+      navigate("/profile");
+    }, 2000); // انتظر ثانيتين ثم انتقل
   };
 
   return (
     <>
+      {message && <div className={`message ${messageType}`}>{message}</div>}
       <div className="login-page">
         <div className="login-card">
           <div className="login-logo">
