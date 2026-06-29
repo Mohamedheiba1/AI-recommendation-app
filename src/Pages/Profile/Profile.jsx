@@ -64,7 +64,7 @@ function Profile() {
     setTimeout(() => {
       setMessage("");
       setMessageType("");
-    }, 1500); // تختفي بعد 10 ثواني
+    }, 1000); // تختفي بعد 10 ثواني
   };
 
   const handleSubmit = (e) => {
