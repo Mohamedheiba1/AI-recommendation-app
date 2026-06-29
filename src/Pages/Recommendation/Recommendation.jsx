@@ -211,8 +211,8 @@ function Recommendation() {
                 <div
                   style={{
                     display: "flex",
-                    alignItems: "center",
-                    justifyContent: "right",
+                    alignItems: "right",
+                    justifyContent: "center",
                   }}
                 >
                   {msg.sender === "user" && (
