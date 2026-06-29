@@ -31,8 +31,10 @@ function Login() {
       <div className="login-page">
         <div className="login-card">
           <div className="login-logo">
-            <div className="rec-bot-icon">
-              <i className="bi bi-robot"></i>
+            <div style={{ paddingTop: 15 }}>
+              <div style={{ width: 45, height: 45 }} className="rec-bot-icon">
+                <i className="bi bi-robot"></i>
+              </div>
             </div>
             <span className="login-logo-text">
               GIRA <span>AI</span>
@@ -87,7 +89,6 @@ function Login() {
           <button className="login-btn" onClick={handleSubmit}>
             <span>→</span> Login
           </button>
-
 
           <p className="login-footer">
             Don't have an account? <Link to="/register">Register</Link>

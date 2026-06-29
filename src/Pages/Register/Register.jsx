@@ -52,12 +52,13 @@ function Register() {
 
   return (
     <>
-
       <div className="reg-page">
         <div className="reg-card">
           <div className="reg-logo">
-            <div className="rec-bot-icon">
-              <i className="bi bi-robot"></i>
+            <div style={{ paddingTop: 15 }}>
+              <div style={{ width: 45, height: 45 }} className="rec-bot-icon">
+                <i className="bi bi-robot"></i>
+              </div>
             </div>
             <span className="reg-logo-text">
               Movie<span>AI</span>
