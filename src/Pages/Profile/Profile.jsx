@@ -70,7 +70,9 @@ function Profile() {
     return (
       <div className="profile-page">
         {/* Banner — full width */}
-        <div className="profile-banner"></div>
+        <div
+        style={{marginTop:-20}}
+        className="profile-banner"></div>
 
         {/* Content wrapper */}
         <div className="profile-content-wrapper">
