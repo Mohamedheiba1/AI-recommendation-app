@@ -18,9 +18,11 @@ function Navbar() {
           className="navbar-brand d-flex align-items-center gap-2"
           to="/profile"
         >
-          <div style={{width:45,height:45,paddingTop:5}} className="rec-bot-icon">
+        <div style={{paddingTop:5}}>
+          <div style={{width:45,height:45}} className="rec-bot-icon">
               <i  className="bi bi-robot"></i>
           </div>
+        </div>
           <span>GIRA AI</span>
         </NavLink>
 
