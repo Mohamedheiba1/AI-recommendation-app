@@ -69,8 +69,12 @@ function Profile() {
   if (!editMode) {
     return (
       <div className="profile-page">
+        {/* Banner — full width */}
         <div className="profile-banner"></div>
+
+        {/* Content wrapper */}
         <div className="profile-content-wrapper">
+          {/* Avatar + name — overlaps banner */}
           <div className="profile-header">
             <div className="profile-avatar-wrapper">
               <div className="profile-avatar">{getInitials(user.name)}</div>
@@ -82,7 +86,9 @@ function Profile() {
             <div className="profile-email">{user.email}</div>
           </div>
 
+          {/* Info card */}
           <div className="profile-card">
+            {/* Info grid */}
             <div className="profile-info-grid">
               <InfoItem
                 iconClass="bi bi-person"
@@ -134,6 +140,7 @@ function Profile() {
               />
             </div>
 
+            {/* About Me — full row */}
             <div className="profile-info-about">
               <div className="info-icon-box icon-blue">
                 <i className="bi bi-person-lines-fill"></i>
@@ -144,6 +151,7 @@ function Profile() {
               </div>
             </div>
 
+            {/* Action buttons */}
             <div className="profile-actions">
               <button
                 className="btn-edit-profile"
@@ -167,222 +175,137 @@ function Profile() {
   /* ───── EDIT MODE ───── */
   return (
     <div className="profile-page">
-      {/* نفس البانر والهيدر بس بدون avatar edit btn */}
-      <div className="profile-banner"></div>
-
       <div className="profile-content-wrapper">
-        {/* Avatar header */}
-        <div className="profile-header">
-          <div className="profile-avatar-wrapper">
-            <div className="profile-avatar">{getInitials(user.name)}</div>
-          </div>
-          <div className="profile-name">{user.name}</div>
-          <div className="profile-email">{user.email}</div>
-        </div>
-
-        {/* Edit card — نفس شكل profile-card */}
-        <div className="profile-card edit-card">
-          <div className="edit-card-header">
-            <i className="bi bi-pencil-square edit-card-icon"></i>
-            <h2 className="edit-card-title">Edit Profile</h2>
-          </div>
+        <div className="edit-card">
+          <h2 className="text-center">Edit Profile</h2>
 
           <form onSubmit={handleSubmit}>
-            {/* Row 1: Name + Age */}
-            <div className="edit-section">
-              <div className="edit-field-group edit-cols-2">
-                <div className="edit-field">
-                  <div className="edit-field-icon-box icon-blue">
-                    <i className="bi bi-person"></i>
-                  </div>
-                  <div className="edit-field-body">
-                    <label className="edit-label">Name</label>
-                    <input
-                      type="text"
-                      className="edit-input"
-                      name="name"
-                      value={user.name}
-                      onChange={handleChange}
-                    />
-                  </div>
-                </div>
-
-                <div className="edit-field">
-                  <div className="edit-field-icon-box icon-purple">
-                    <i className="bi bi-123"></i>
-                  </div>
-                  <div className="edit-field-body">
-                    <label className="edit-label">Age</label>
-                    <input
-                      type="number"
-                      className="edit-input"
-                      name="age"
-                      value={user.age}
-                      onChange={handleChange}
-                    />
-                  </div>
+            <div className="edit-grid-2">
+              <div className="mb-3">
+                <label className="form-label">Name</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  name="name"
+                  value={user.name}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="profile-card">
+                {/* Info grid */}
+                <div className="profile-info-grid">
+                  {/* <label className="form-label">Age</label> */}
+                  <input
+                    type="text"
+                    className="form-control"
+                    name="age"
+                    iconClass="bi bi-person"
+                    colorClass="icon-blue"
+                    label="Age"
+                    value={user.age}
+                    onChange={handleChange}
+                  />
                 </div>
               </div>
             </div>
 
-            {/* Row 2: Gender + Movies + Games */}
-            <div className="edit-section">
-              <div className="edit-field-group edit-cols-3">
-                <div className="edit-field">
-                  <div className="edit-field-icon-box icon-teal">
-                    <i className="bi bi-people"></i>
-                  </div>
-                  <div className="edit-field-body">
-                    <label className="edit-label">Gender</label>
-                    <select
-                      className="edit-input edit-select"
-                      name="gender"
-                      value={user.gender}
-                      onChange={handleChange}
-                    >
-                      <option value="">Choose...</option>
-                      <option value="Male">Male</option>
-                      <option value="Female">Female</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div className="edit-field">
-                  <div className="edit-field-icon-box icon-pink">
-                    <i className="bi bi-film"></i>
-                  </div>
-                  <div className="edit-field-body">
-                    <label className="edit-label">Favorite Movies</label>
-                    <input
-                      type="text"
-                      className="edit-input"
-                      name="movies"
-                      value={user.movies}
-                      onChange={handleChange}
-                    />
-                  </div>
-                </div>
-
-                <div className="edit-field">
-                  <div className="edit-field-icon-box icon-orange">
-                    <i className="bi bi-controller"></i>
-                  </div>
-                  <div className="edit-field-body">
-                    <label className="edit-label">Favorite Games</label>
-                    <input
-                      type="text"
-                      className="edit-input"
-                      name="games"
-                      value={user.games}
-                      onChange={handleChange}
-                    />
-                  </div>
-                </div>
+            <div className="edit-grid-3">
+              <div className="mb-3">
+                <label className="form-label">Gender</label>
+                <select
+                  className="form-select"
+                  name="gender"
+                  value={user.gender}
+                  onChange={handleChange}
+                >
+                  <option value="">Choose...</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                </select>
               </div>
-            </div>
-
-            {/* Row 3: Genres + Series + Music */}
-            <div className="edit-section">
-              <div className="edit-field-group edit-cols-3">
-                <div className="edit-field">
-                  <div className="edit-field-icon-box icon-orange">
-                    <i className="bi bi-tag"></i>
-                  </div>
-                  <div className="edit-field-body">
-                    <label className="edit-label">Favorite Genres</label>
-                    <input
-                      type="text"
-                      className="edit-input"
-                      name="genres"
-                      value={user.genres}
-                      onChange={handleChange}
-                    />
-                  </div>
-                </div>
-
-                <div className="edit-field">
-                  <div className="edit-field-icon-box icon-indigo">
-                    <i className="bi bi-tv"></i>
-                  </div>
-                  <div className="edit-field-body">
-                    <label className="edit-label">Favorite Series</label>
-                    <input
-                      type="text"
-                      className="edit-input"
-                      name="series"
-                      value={user.series}
-                      onChange={handleChange}
-                    />
-                  </div>
-                </div>
-
-                <div className="edit-field">
-                  <div className="edit-field-icon-box icon-red">
-                    <i className="bi bi-music-note"></i>
-                  </div>
-                  <div className="edit-field-body">
-                    <label className="edit-label">Favorite Music</label>
-                    <input
-                      type="text"
-                      className="edit-input"
-                      name="music"
-                      value={user.music}
-                      onChange={handleChange}
-                    />
-                  </div>
-                </div>
+              <div className="mb-3">
+                <label className="form-label">Favorite Movies</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  name="movies"
+                  value={user.movies}
+                  onChange={handleChange}
+                />
               </div>
-            </div>
-
-            {/* Row 4: Hobbies */}
-            <div className="edit-section">
-              <div className="edit-field-group edit-cols-2">
-                <div className="edit-field">
-                  <div className="edit-field-icon-box icon-green">
-                    <i className="bi bi-heart"></i>
-                  </div>
-                  <div className="edit-field-body">
-                    <label className="edit-label">Hobbies</label>
-                    <input
-                      type="text"
-                      className="edit-input"
-                      name="hobbies"
-                      value={user.hobbies}
-                      onChange={handleChange}
-                    />
-                  </div>
-                </div>
+              <div className="mb-3">
+                <label className="form-label">Favorite Games</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  name="games"
+                  value={user.games}
+                  onChange={handleChange}
+                />
               </div>
-            </div>
-
-            {/* About Me — full width */}
-            <div className="edit-about-section">
-              <div className="edit-field-icon-box icon-blue">
-                <i className="bi bi-person-lines-fill"></i>
+              <div className="mb-3">
+                <label className="form-label">Favorite Genres</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  name="genres"
+                  value={user.genres}
+                  onChange={handleChange}
+                />
               </div>
-              <div className="edit-field-body">
-                <label className="edit-label">About Me</label>
-                <textarea
-                  rows="4"
-                  className="edit-input edit-textarea"
-                  name="bio"
-                  value={user.bio}
+              <div className="mb-3">
+                <label className="form-label">Favorite Series</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  name="series"
+                  value={user.series}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="mb-3">
+                <label className="form-label">Favorite Music</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  name="music"
+                  value={user.music}
+                  onChange={handleChange}
+                />
+              </div>
+              <div className="mb-3">
+                <label className="form-label">Hobbies</label>
+                <input
+                  type="text"
+                  className="form-control"
+                  name="hobbies"
+                  value={user.hobbies}
                   onChange={handleChange}
                 />
               </div>
             </div>
 
-            {/* Buttons */}
-            <div className="profile-actions">
+            <div className="mb-4">
+              <label className="form-label">About Me</label>
+              <textarea
+                rows="4"
+                className="form-control"
+                name="bio"
+                value={user.bio}
+                onChange={handleChange}
+              />
+            </div>
+
+            <div className="d-flex gap-3">
               <button
                 type="button"
-                className="btn-edit-profile btn-cancel-style"
+                className="btn-cancel"
                 onClick={() => setEditMode(false)}
               >
                 Cancel
               </button>
-              <button type="submit" className="btn-ai-recommendation">
-                <i className="bi bi-check-lg"></i> Save Changes
+              <button type="submit" className="btn-save">
+                Save Changes
               </button>
             </div>
           </form>

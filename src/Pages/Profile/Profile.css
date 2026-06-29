@@ -5,7 +5,7 @@
   padding-bottom: 48px;
 }
 
-/* ===== Banner ===== */
+/* ===== Banner — full viewport width ===== */
 .profile-banner {
   width: 100%;
   height: 260px;
@@ -31,10 +31,10 @@
 /* ===== Content wrapper ===== */
 .profile-content-wrapper {
   width: 100%;
-  padding: 0 24px;
+  padding: 0 24px 0;
 }
 
-/* ===== Avatar & header ===== */
+/* ===== Avatar & header — centered, overlaps banner ===== */
 .profile-header {
   display: flex;
   flex-direction: column;
@@ -93,7 +93,7 @@
   color: #6b7280;
 }
 
-/* ===== Shared card shell ===== */
+/* ===== Info card ===== */
 .profile-card {
   background: #fff;
   border-radius: 16px;
@@ -102,10 +102,11 @@
   padding-bottom: 24px;
 }
 
-/* ===== VIEW: Info grid ===== */
+/* ===== Info grid — responsive columns ===== */
 .profile-info-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, 1fr); /* desktop: 4 cols */
+  border-bottom: 1px solid #f0f0f5;
 }
 
 .profile-info-item {
@@ -121,9 +122,7 @@
   border-right: none;
 }
 
-/* ===== Icon boxes (shared) ===== */
-.info-icon-box,
-.edit-field-icon-box {
+.info-icon-box {
   width: 38px;
   height: 38px;
   border-radius: 10px;
@@ -167,21 +166,19 @@
   color: #6366f1;
 }
 
-.info-label,
-.edit-label {
+.info-label {
   font-size: 0.82rem;
   font-weight: 600;
   color: #111827;
   margin-bottom: 3px;
-  display: block;
 }
 
 .info-value {
-  font-size: 0.82rem;
-  color: #9ca3af;
+  font-size: 0.86rem;
+  color: #666d78;
 }
 
-/* ===== VIEW: About Me ===== */
+/* ===== About Me — full width ===== */
 .profile-info-about {
   display: flex;
   align-items: flex-start;
@@ -190,7 +187,7 @@
   border-bottom: 1px solid #f0f0f5;
 }
 
-/* ===== Action buttons (shared) ===== */
+/* ===== Action buttons ===== */
 .profile-actions {
   display: flex;
   gap: 12px;
@@ -217,14 +214,7 @@
 .btn-edit-profile {
   background: linear-gradient(135deg, #7c3aed, #6d28d9);
 }
-.btn-cancel-style {
-  background: #f3f4f6 !important;
-  color: #374151 !important;
-}
-.btn-cancel-style:hover {
-  background: #e5e7eb !important;
-  opacity: 1 !important;
-}
+
 .btn-ai-recommendation {
   background: linear-gradient(135deg, #3b82f6, #2563eb);
 }
@@ -234,138 +224,132 @@
   opacity: 0.88;
 }
 
-/* ===== EDIT CARD header ===== */
-.edit-card-header {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  padding: 28px 20px 20px;
-  border-bottom: 1px solid #f0f0f5;
+/* ===== Edit Mode ===== */
+.edit-page-wrapper {
+  width: 100%;
+  padding: 32px 24px;
 }
 
-.edit-card-icon {
-  font-size: 1.3rem;
-  color: #7c3aed;
+.edit-card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.07);
+  padding: 36px 32px;
 }
 
-.edit-card-title {
-  font-size: 1.3rem;
+.edit-card h2 {
+  font-size: 1.4rem;
   font-weight: 700;
   color: #111827;
-  margin: 0;
+  margin-bottom: 28px;
 }
 
-/* ===== EDIT sections (same borders as profile-info-item rows) ===== */
-.edit-section {
-  border-bottom: 1px solid #f0f0f5;
-}
-
-.edit-field-group {
+/* Responsive grids inside edit form */
+.edit-grid-2 {
   display: grid;
-}
-
-.edit-cols-2 {
   grid-template-columns: repeat(2, 1fr);
+  gap: 0 16px;
 }
-.edit-cols-3 {
+
+.edit-grid-3 {
+  display: grid;
   grid-template-columns: repeat(3, 1fr);
+  gap: 0 16px;
 }
 
-.edit-field {
-  display: flex;
-  align-items: flex-start;
-  gap: 12px;
-  padding: 18px 20px;
-  border-right: 1px solid #f0f0f5;
+.edit-card .form-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #374151;
 }
 
-.edit-field:last-child {
-  border-right: none;
-}
-
-.edit-field-body {
-  flex: 1;
-  min-width: 0;
-}
-
-/* ===== Inputs inside edit fields ===== */
-.edit-input {
-  width: 100%;
+.edit-card .form-control,
+.edit-card .form-select {
+  border-radius: 10px;
   border: 1px solid #e5e7eb;
-  border-radius: 8px;
-  padding: 7px 10px;
-  font-size: 0.88rem;
+  font-size: 0.9rem;
+  padding: 10px 14px;
   color: #111827;
-  background: #fafafa;
-  margin-top: 4px;
-  outline: none;
-  transition:
-    border-color 0.2s,
-    box-shadow 0.2s;
 }
 
-.edit-input:focus {
+.edit-card .form-control:focus,
+.edit-card .form-select:focus {
   border-color: #7c3aed;
   box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
-  background: #fff;
+  outline: none;
 }
 
-.edit-select {
-  appearance: auto;
+.btn-cancel {
+  flex: 1;
+  background: #f3f4f6;
+  color: #374151;
+  border: none;
+  border-radius: 10px;
+  padding: 12px;
+  font-size: 0.9rem;
+  font-weight: 600;
   cursor: pointer;
+  transition: background 0.2s;
 }
 
-.edit-textarea {
-  resize: vertical;
-  min-height: 90px;
+.btn-cancel:hover {
+  background: #e5e7eb;
 }
 
-/* ===== About Me in edit mode ===== */
-.edit-about-section {
-  display: flex;
-  align-items: flex-start;
-  gap: 14px;
-  padding: 18px 20px;
-  border-bottom: 1px solid #f0f0f5;
+.btn-save {
+  flex: 1;
+  background: linear-gradient(135deg, #7c3aed, #6d28d9);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 12px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+
+.btn-save:hover {
+  opacity: 0.9;
 }
 
 /* ===== RESPONSIVE ===== */
+
+/* Tablet: 2 cols */
 @media (max-width: 1024px) {
   .profile-info-grid {
     grid-template-columns: repeat(2, 1fr);
   }
+
   .profile-info-item:nth-child(4n) {
     border-right: 1px solid #f0f0f5;
   }
+
   .profile-info-item:nth-child(2n) {
     border-right: none;
   }
 
-  .edit-cols-3 {
+  .edit-grid-3 {
     grid-template-columns: repeat(2, 1fr);
-  }
-  .edit-field:nth-child(2n) {
-    border-right: none;
-  }
-  /* last odd child in 2-col also loses border */
-  .edit-cols-3 .edit-field:last-child:nth-child(odd) {
-    border-right: none;
   }
 }
 
+/* Mobile: 1 col */
 @media (max-width: 600px) {
   .profile-banner {
     height: 180px;
   }
+
   .profile-content-wrapper {
     padding: 0 12px;
   }
+
   .profile-avatar {
     width: 96px;
     height: 96px;
     font-size: 1.7rem;
   }
+
   .profile-name {
     font-size: 1.3rem;
   }
@@ -373,19 +357,25 @@
   .profile-info-grid {
     grid-template-columns: 1fr;
   }
-  .profile-info-item {
-    border-right: none;
-  }
 
-  .edit-cols-2,
-  .edit-cols-3 {
-    grid-template-columns: 1fr;
-  }
-  .edit-field {
+  .profile-info-item:nth-child(n) {
     border-right: none;
   }
 
   .profile-actions {
     flex-direction: column;
+  }
+
+  .edit-page-wrapper {
+    padding: 20px 12px;
+  }
+
+  .edit-card {
+    padding: 24px 16px;
+  }
+
+  .edit-grid-2,
+  .edit-grid-3 {
+    grid-template-columns: 1fr;
   }
 }
