@@ -1,5 +1,6 @@
 /* Navbar */
 .custom-navbar {
+  height: 50px;
   background-color: #0d0d0d;
   padding: 14px 0;
   border-bottom: 1px solid rgba(255, 255, 255, 0.06);
