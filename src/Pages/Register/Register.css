@@ -90,8 +90,7 @@
 .reg-label {
   color: #cbd5e1;
   font-size: 13px;
-  display: flex;
-  padding-left: 20px;
+  display: block;
   margin-bottom: 7px;
 }
 
