@@ -1,0 +1,21 @@
+:root {
+  --primary: #7c3aed;
+  --primary2: #5b21b6;
+  --secondary: #2563eb;
+
+  --bg: #f5f7fb;
+
+  --dark: #0f172a;
+
+  --text: #1e293b;
+
+  --white: #fff;
+}
+
+body {
+  background: var(--bg);
+
+  font-family: Inter, sans-serif;
+
+  color: var(--text);
+}

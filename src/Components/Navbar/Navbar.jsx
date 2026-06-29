@@ -1,4 +1,5 @@
 import { Link, useNavigate } from "react-router-dom";
+import "./Navbar.css";
 
 function Navbar() {
   const navigate = useNavigate();
@@ -11,29 +12,43 @@ function Navbar() {
   };
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav className="navbar navbar-expand-lg custom-navbar">
       <div className="container">
-        <Link className="navbar-brand" to="/profile">
-          MovieAI
+        <Link
+          className="navbar-brand d-flex align-items-center gap-2"
+          to="/profile"
+        >
+          <i className="bi bi-lightning-charge-fill logo-icon"></i>
+          <span>MovieAI</span>
         </Link>
 
         <ul className="navbar-nav ms-auto align-items-center">
           <li className="nav-item">
-            <Link className="nav-link" to="/profile">
+            <Link
+              to="/profile"
+              className={({ isActive }) =>
+                isActive ? "nav-link active-link" : "nav-link"
+              }
+            >
               Profile
             </Link>
           </li>
 
           <li className="nav-item">
-            <Link className="nav-link" to="/recommendation">
+            <Link
+              to="/recommendation"
+              className={({ isActive }) =>
+                isActive ? "nav-link active-link" : "nav-link"
+              }
+            >
               Recommendation
             </Link>
           </li>
 
-          <li className="nav-item mx-3 text-white">{currentUser?.name}</li>
+          <li className="nav-item mx-4 username">{currentUser?.name}</li>
 
           <li className="nav-item">
-            <button onClick={logout} className="btn btn-danger">
+            <button onClick={logout} className="btn logout-btn">
               Logout
             </button>
           </li>
