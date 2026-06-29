@@ -12,22 +12,21 @@ function App() {
   const router = createBrowserRouter([
     {
       path: "/",
+      element: <Login />,
+    },
+    {
+      path: "/register",
+      element: <Register />,
+    },
+    {
+      path: "/forgot-password",
+      element: <ForgotPassword />,
+    },
+    {
       element: <Layout />,
       children: [
         {
-          index: true,
-          element: <Login />,
-        },
-        {
-          path: "register",
-          element: <Register />,
-        },
-        {
-          path: "forgot-password",
-          element: <ForgotPassword />,
-        },
-        {
-          path: "profile",
+          path: "/profile",
           element: (
             <ProtectedRoute>
               <Profile />
@@ -35,7 +34,7 @@ function App() {
           ),
         },
         {
-          path: "recommendation",
+          path: "/recommendation",
           element: (
             <ProtectedRoute>
               <Recommendation />
@@ -43,10 +42,9 @@ function App() {
           ),
         },
       ],
-      errorElement: <NotFound />,
     },
   ]);
-
+  // errorElement: <NotFound />,
   return (
     <>
       <RouterProvider router={router} />
