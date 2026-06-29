@@ -55,14 +55,33 @@ function Profile() {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
 
+  const [message, setMessage] = useState("");
+  const [messageType, setMessageType] = useState("");
+  const showMessage = (text, type) => {
+    setMessage(text);
+    setMessageType(type);
+
+    setTimeout(() => {
+      setMessage("");
+      setMessageType("");
+    }, 1500); // تختفي بعد 10 ثواني
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
+
     const users = JSON.parse(localStorage.getItem("users")) || [];
+
     const updatedUsers = users.map((u) => (u.email === user.email ? user : u));
+
     localStorage.setItem("users", JSON.stringify(updatedUsers));
     sessionStorage.setItem("currentUser", JSON.stringify(user));
-    alert("Profile Updated Successfully");
-    setEditMode(false);
+
+    showMessage("Profile Updated Successfully", "success");
+
+    setTimeout(() => {
+      setEditMode(false);
+    }, 1000); // أو 2000 لو حابب
   };
 
   /* ───── VIEW MODE ───── */
@@ -70,9 +89,7 @@ function Profile() {
     return (
       <div className="profile-page">
         {/* Banner — full width */}
-        <div
-        style={{marginTop:-20}}
-        className="profile-banner"></div>
+        <div style={{ marginTop: -20 }} className="profile-banner"></div>
 
         {/* Content wrapper */}
         <div className="profile-content-wrapper">
@@ -177,6 +194,7 @@ function Profile() {
   /* ───── EDIT MODE ───── */
   return (
     <div className="profile-page">
+      {message && <div className={`message ${messageType}`}>{message}</div>}
       <div className="profile-content-wrapper">
         <div className="edit-card">
           <h2 className="text-center">Edit Profile</h2>
@@ -202,8 +220,6 @@ function Profile() {
                   value={user.age}
                   onChange={handleChange}
                 />
-
-                
               </div>
             </div>
 
