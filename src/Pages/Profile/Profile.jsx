@@ -191,7 +191,7 @@ function Profile() {
                   onChange={handleChange}
                 />
               </div>
-              <div className="profile-card">
+              {/* <div className="profile-card"> */}
                 {/* Info grid */}
                 {/* <div className="profile-info-grid"> */}
                   <label className="form-label">Age</label>
@@ -206,7 +206,7 @@ function Profile() {
                     onChange={handleChange}
                   />
                 </div>
-              </div>
+             
            
 
             <div className="edit-grid-3">
