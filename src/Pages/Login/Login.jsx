@@ -49,7 +49,6 @@ function Login() {
 
           <label className="login-label">Email</label>
           <div className="login-input-wrap">
-            <span className="login-input-icon">✉</span>
             <input
               className="login-input"
               type="email"
@@ -63,7 +62,6 @@ function Login() {
 
           <label className="login-label">Password</label>
           <div className="login-input-wrap">
-            <span className="login-input-icon">🔒</span>
             <input
               className="login-input"
               type={showPassword ? "text" : "password"}

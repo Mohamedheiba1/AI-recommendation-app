@@ -52,6 +52,7 @@ function Register() {
 
   return (
     <>
+
       <div className="reg-page">
         <div className="reg-card">
           <div className="reg-logo">
@@ -71,7 +72,6 @@ function Register() {
 
           <label className="reg-label">Full Name</label>
           <div className="reg-input-wrap">
-            <span className="reg-input-icon">👤</span>
             <input
               className="reg-input"
               type="text"
@@ -85,7 +85,6 @@ function Register() {
 
           <label className="reg-label">Email</label>
           <div className="reg-input-wrap">
-            <span className="reg-input-icon">✉</span>
             <input
               className="reg-input"
               type="email"
@@ -99,17 +98,6 @@ function Register() {
 
           <label className="reg-label">Password</label>
           <div className="reg-input-wrap">
-            <span className="reg-input-icon">
-              <img
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-                src="/padlock.png"
-                alt="Logo"
-              />
-            </span>
             <input
               className="reg-input"
               type={showPassword ? "text" : "password"}
@@ -130,7 +118,6 @@ function Register() {
 
           <label className="reg-label">Confirm Password</label>
           <div className="reg-input-wrap" style={{ marginBottom: "26px" }}>
-            <span className="reg-input-icon">🔒</span>
             <input
               className="reg-input"
               type={showConfirm ? "text" : "password"}
