@@ -52,7 +52,6 @@ function Register() {
 
   return (
     <>
-
       <div className="reg-page">
         <div className="reg-card">
           <div className="reg-logo">
@@ -100,7 +99,17 @@ function Register() {
 
           <label className="reg-label">Password</label>
           <div className="reg-input-wrap">
-            <span className="reg-input-icon"><img src="/padlock.png" alt="Logo" /></span>
+            <span className="reg-input-icon">
+              <img
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+                src="/padlock.png"
+                alt="Logo"
+              />
+            </span>
             <input
               className="reg-input"
               type={showPassword ? "text" : "password"}
