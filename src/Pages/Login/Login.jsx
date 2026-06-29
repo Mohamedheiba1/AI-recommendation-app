@@ -22,9 +22,7 @@ function Login() {
     const users = JSON.parse(localStorage.getItem("users")) || [];
 
     const user = users.find(
-      (u) =>
-        u.email === formData.email &&
-        u.password === formData.password
+      (u) => u.email === formData.email && u.password === formData.password,
     );
 
     if (!user) {
@@ -33,10 +31,7 @@ function Login() {
     }
 
     // حفظ المستخدم الحالي بكل بياناته
-    sessionStorage.setItem(
-      "currentUser",
-      JSON.stringify(user)
-    );
+    sessionStorage.setItem("currentUser", JSON.stringify(user));
 
     alert(`Welcome ${user.name}`);
 
@@ -57,19 +52,13 @@ function Login() {
           borderRadius: "20px",
         }}
       >
-        <h2 className="text-center fw-bold mb-2">
-          Welcome Back
-        </h2>
+        <h2 className="text-center fw-bold mb-2">Welcome Back</h2>
 
-        <p className="text-center text-secondary mb-4">
-          Login to continue
-        </p>
+        <p className="text-center text-secondary mb-4">Login to continue</p>
 
         <form onSubmit={handleSubmit}>
           <div className="mb-3">
-            <label className="form-label">
-              Email
-            </label>
+            <label className="form-label">Email</label>
 
             <input
               type="email"
@@ -83,9 +72,7 @@ function Login() {
           </div>
 
           <div className="mb-3">
-            <label className="form-label">
-              Password
-            </label>
+            <label className="form-label">Password</label>
 
             <input
               type="password"
@@ -96,22 +83,21 @@ function Login() {
               onChange={handleChange}
               required
             />
+            <div className="text-end mb-3">
+              <Link to="/forgot-password" className="text-decoration-none">
+                Forgot Password?
+              </Link>
+            </div>
           </div>
 
-          <button
-            type="submit"
-            className="btn btn-primary w-100"
-          >
+          <button type="submit" className="btn btn-primary w-100">
             Login
           </button>
         </form>
 
         <p className="text-center mt-3">
           Don't have an account?
-          <Link
-            to="/register"
-            className="ms-2 text-decoration-none"
-          >
+          <Link to="/register" className="ms-2 text-decoration-none">
             Register
           </Link>
         </p>

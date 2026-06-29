@@ -7,7 +7,7 @@ import Profile from "./Pages/Profile/Profile";
 import Recommendation from "./Pages/Recommendation/Recommendation";
 import NotFound from "./Pages/NotFound/NotFound";
 import ProtectedRoute from "./Components/ProtectedRoute/ProtectedRoute";
-
+import ForgotPassword from "./Pages/ForgotPassword/ForgotPassword";
 function App() {
   const router = createBrowserRouter([
     {
@@ -21,6 +21,10 @@ function App() {
         {
           path: "register",
           element: <Register />,
+        },
+        {
+          path: "forgot-password",
+          element: <ForgotPassword />,
         },
         {
           path: "profile",
