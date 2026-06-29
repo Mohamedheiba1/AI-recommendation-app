@@ -1,9 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import "./Login.css";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faLock } from '@awesome.me/kit-KIT_CODE/icons/classic/solid'
-import { byPrefixAndName } from '@awesome.me/kit-KIT_CODE/icons'
 
 function Login() {
   const navigate = useNavigate();
@@ -66,8 +63,7 @@ function Login() {
 
           <label className="login-label">Password</label>
           <div className="login-input-wrap">
-            <span className="login-input-icon"><FontAwesomeIcon icon={faLock} />
-            <FontAwesomeIcon icon={byPrefixAndName.fas['house']} /></span>
+            <span className="login-input-icon">🔒</span>
             <input
               className="login-input"
               type={showPassword ? "text" : "password"}
@@ -93,6 +89,7 @@ function Login() {
           <button className="login-btn" onClick={handleSubmit}>
             <span>→</span> Login
           </button>
+
 
           <p className="login-footer">
             Don't have an account? <Link to="/register">Register</Link>

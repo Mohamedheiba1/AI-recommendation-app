@@ -42,9 +42,10 @@ function App() {
           ),
         },
       ],
+      errorElement: <NotFound />,
     },
   ]);
-  // errorElement: <NotFound />,
+
   return (
     <>
       <RouterProvider router={router} />
