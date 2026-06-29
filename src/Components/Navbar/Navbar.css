@@ -75,3 +75,17 @@
   background-color: #c53030;
   color: #ffffff !important;
 }
+
+.rec-bot-icon {
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #7c3aed, #6d28d9);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+  color: #fff;
+  margin-bottom: 14px;
+  box-shadow: 0 4px 16px rgba(124, 58, 237, 0.3);
+}

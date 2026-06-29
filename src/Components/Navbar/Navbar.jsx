@@ -18,7 +18,9 @@ function Navbar() {
           className="navbar-brand d-flex align-items-center gap-2"
           to="/profile"
         >
-          <i className="bi bi-lightning-charge-fill logo-icon"></i>
+          <div className="rec-bot-icon">
+              <i className="bi bi-robot"></i>
+          </div>
           <span>GIRA AI</span>
         </NavLink>
 
