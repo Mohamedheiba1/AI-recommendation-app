@@ -18,7 +18,7 @@ function Navbar() {
           className="navbar-brand d-flex align-items-center gap-2"
           to="/profile"
         >
-          <div style={{width:40,height:40}} className="rec-bot-icon">
+          <div style={{width:30,height:30}} className="rec-bot-icon">
               <i  className="bi bi-robot"></i>
           </div>
           <span>GIRA AI</span>
