@@ -19,7 +19,7 @@ function Navbar() {
           to="/profile"
         >
           <i className="bi bi-lightning-charge-fill logo-icon"></i>
-          <span>MovieAI</span>
+          <span>GIRA AI</span>
         </NavLink>
 
         <ul className="navbar-nav ms-auto align-items-center">
