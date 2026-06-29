@@ -210,7 +210,7 @@ function Recommendation() {
                 </div>
                 {msg.sender === "user" && (
                   <div
-                    className="rec-msg-avatar"
+                    // className="rec-msg-avatar"
                     style={{
                       background: "linear-gradient(135deg,#3b82f6,#2563eb)",
                     }}
