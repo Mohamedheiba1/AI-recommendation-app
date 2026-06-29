@@ -1,12 +1,4 @@
 /* Navbar */
-.navbar {
-    display: flex;  
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 1000;
-}
 .custom-navbar {
   height: 60px;
   background-color: #0d0d0d;
