@@ -32,7 +32,7 @@ function Login() {
         <div className="login-card">
           <div className="login-logo">
             <div style={{ paddingTop: 15 }}>
-              <div style={{ width: 45, height: 45 }} className="rec-bot-icon">
+              <div className="rec-bot-icon">
                 <i className="bi bi-robot"></i>
               </div>
             </div>
