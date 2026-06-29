@@ -27,7 +27,7 @@ function Register() {
     setTimeout(() => {
       setMessage("");
       setMessageType("");
-    }, 10000); // تختفي بعد 10 ثواني
+    }, 500); // تختفي بعد 10 ثواني
   };
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -68,7 +68,7 @@ function Register() {
 
     setTimeout(() => {
       navigate("/profile");
-    }, 2000);
+    }, 1000);
   };
 
   return (
