@@ -208,18 +208,26 @@ function Recommendation() {
                     </span>
                   ))}
                 </div>
-                {/* {msg.sender === "user" && (
-                  <div
-                    className="rec-msg-avatar"
-                    style={{
-                      background: "linear-gradient(135deg,#3b82f6,#2563eb)",
-                    }}
-                  >
-                    {getInitials(profile.name) || (
-                      <i className="bi bi-person"></i>
-                    )}
-                  </div>
-                )} */}
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "right",
+                  }}
+                >
+                  {msg.sender === "user" && (
+                    <div
+                      className="rec-msg-avatar"
+                      style={{
+                        background: "linear-gradient(135deg,#3b82f6,#2563eb)",
+                      }}
+                    >
+                      {getInitials(profile.name) || (
+                        <i className="bi bi-person"></i>
+                      )}
+                    </div>
+                  )}
+                </div>
               </div>
             ))}
 
