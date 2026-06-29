@@ -175,7 +175,7 @@
 
 .info-value {
   font-size: 0.82rem;
-  color: #9ca3af;
+  color: linear-gradient(135deg, #3b82f6, #2563eb);
 }
 
 /* ===== About Me — full width ===== */
@@ -260,7 +260,7 @@
 .edit-card .form-label {
   font-size: 0.85rem;
   font-weight: 600;
-  color: #0a4098;
+  color: #374151;
 }
 
 .edit-card .form-control,
