@@ -51,11 +51,11 @@ function Navbar() {
 
           <li className="nav-item mx-2 username">{currentUser?.name}</li>
 
-          <li className="nav-item ms-2">
+          {/* <li className="nav-item ms-2"> */}
             <button onClick={logout} className="btn logout-btn">
               Logout
             </button>
-          </li>
+          {/* </li> */}
         </ul>
       </div>
     </nav>
