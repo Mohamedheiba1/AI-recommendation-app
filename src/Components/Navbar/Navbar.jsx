@@ -12,7 +12,9 @@ function Navbar() {
   };
 
   return (
-    <nav className="navbar navbar-expand-lg custom-navbar">
+    <nav 
+    style={{zIndex:100000}}
+    className="navbar navbar-expand-lg custom-navbar">
       <div className="container">
         <NavLink
           className="navbar-brand d-flex align-items-center gap-2"
