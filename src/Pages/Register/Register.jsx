@@ -17,17 +17,33 @@ function Register() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  const [message, setMessage] = useState("");
+  const [messageType, setMessageType] = useState("");
+
+  const showMessage = (text, type) => {
+    setMessage(text);
+    setMessageType(type);
+
+    setTimeout(() => {
+      setMessage("");
+      setMessageType("");
+    }, 10000); // تختفي بعد 10 ثواني
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
+
     if (formData.password !== formData.confirmPassword) {
-      alert("Passwords do not match");
+      showMessage("Passwords do not match", "error");
       return;
     }
+
     const users = JSON.parse(localStorage.getItem("users")) || [];
+
     if (users.find((u) => u.email === formData.email)) {
-      alert("Email already exists");
+      showMessage("Email already exists", "error");
       return;
     }
+
     const newUser = {
       name: formData.name,
       email: formData.email,
@@ -42,16 +58,26 @@ function Register() {
       hobbies: "",
       bio: "",
     };
+
     users.push(newUser);
     localStorage.setItem("users", JSON.stringify(users));
     sessionStorage.setItem("currentUser", JSON.stringify(newUser));
     sessionStorage.setItem("firstLogin", "true");
-    alert("Account Created Successfully");
-    navigate("/profile");
+
+    showMessage("Account Created Successfully", "success");
+
+    setTimeout(() => {
+      navigate("/profile");
+    }, 2000);
   };
 
   return (
     <>
+    {message && (
+  <div className={`message ${messageType}`}>
+    {message}
+  </div>
+)}
       <div className="reg-page">
         <div className="reg-card">
           <div className="reg-logo">

@@ -234,3 +234,36 @@
   margin-bottom: 14px;
   box-shadow: 0 4px 16px rgba(124, 58, 237, 0.3);
 }
+
+.message {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 16px 35px;
+  border-radius: 10px;
+  color: white;
+  font-size: 18px;
+  font-weight: 600;
+  z-index: 9999;
+  animation: fadeIn 0.3s ease;
+}
+
+.message.success {
+  background: #22c55e;
+}
+
+.message.error {
+  background: #ef4444;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -60%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
