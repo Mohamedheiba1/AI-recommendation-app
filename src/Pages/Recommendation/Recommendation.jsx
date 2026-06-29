@@ -11,36 +11,55 @@ function Recommendation() {
   const profile = JSON.parse(sessionStorage.getItem("currentUser")) || {};
 
   const chatKey = `chat_${profile.email}`;
-  const savedMessages = JSON.parse(localStorage.getItem(chatKey));
+
+  const savedChat = JSON.parse(localStorage.getItem(chatKey)) || {};
 
   const [messages, setMessages] = useState(
-    savedMessages || [
+    savedChat.messages || [
       {
         sender: "bot",
         text: questions[0],
       },
     ],
   );
-  const [reason, setReason] = useState("");
-  const [movie, setMovie] = useState(null);
-  const [step, setStep] = useState(0);
-  const [answers, setAnswers] = useState([]);
+
+  const [reason, setReason] = useState(savedChat.reason || "");
+
+  const [movie, setMovie] = useState(savedChat.movie || null);
+
+  const [step, setStep] = useState(savedChat.step || 0);
+
+  const [answers, setAnswers] = useState(savedChat.answers || []);
+
   const [input, setInput] = useState("");
+
+  const [loading, setLoading] = useState(false);
+
+  const [chatMode, setChatMode] = useState(savedChat.chatMode || false);
+
+  const [title, setTitle] = useState(savedChat.title || "");
+
+  const [category, setCategory] = useState(savedChat.category || "");
   const [loading, setLoading] = useState(false);
   const [chatMode, setChatMode] = useState(false);
-
-  const [title, setTitle] = useState("");
-  const [category, setCategory] = useState("");
-
   useEffect(() => {
-    localStorage.setItem(chatKey, JSON.stringify(messages));
-  }, [messages]);
+    localStorage.setItem(
+      chatKey,
+      JSON.stringify({
+        messages,
+        movie,
+        reason,
+        title,
+        category,
+        answers,
+        step,
+        chatMode,
+      }),
+    );
+  }, [messages, movie, reason, title, category, answers, step, chatMode]);
   const sendMessage = async () => {
     if (!input.trim()) return;
 
-    // =========================
-    // Chat Mode
-    // =========================
     if (chatMode) {
       const userMessage = input;
 
@@ -58,7 +77,6 @@ function Recommendation() {
       try {
         const reply = await askChat(profile, movie, messages, userMessage);
 
-        // لو الـ AI رجع Recommendation جديدة
         if (reply.includes("Title:")) {
           const lines = reply.split("\n");
 
@@ -207,6 +225,25 @@ function Recommendation() {
       setLoading(false);
     }
   };
+  const clearChat = () => {
+    localStorage.removeItem(chatKey);
+
+    setMessages([
+      {
+        sender: "bot",
+        text: questions[0],
+      },
+    ]);
+
+    setMovie(null);
+    setReason("");
+    setTitle("");
+    setCategory("");
+    setAnswers([]);
+    setStep(0);
+    setChatMode(false);
+    setInput("");
+  };
   return (
     <div className="container mt-5">
       <div className="card shadow">
@@ -222,15 +259,13 @@ function Recommendation() {
           sendMessage={sendMessage}
         />
 
-        
-
         {/* Movie أو Series */}
         {(category === "Movie" || category === "Series") && movie && (
           <MovieCard movie={movie} reason={reason} />
         )}
 
         {/* Game */}
-        {category === "Game" && (
+        {category === "Game" && title && (
           <div className="card mt-4 shadow-lg">
             <div className="card-body text-center">
               <h2 className="fw-bold">🎮 {title}</h2>
@@ -245,29 +280,10 @@ function Recommendation() {
             </div>
           </div>
         )}
-        <button
-  className="btn btn-danger"
-  onClick={() => {
-    localStorage.removeItem(chatKey);
-
-    setMessages([
-      {
-        sender: "bot",
-        text: questions[0],
-      },
-    ]);
-
-    setAnswers([]);
-    setStep(0);
-    setMovie(null);
-    setReason("");
-    setChatMode(false);
-  }}
->
-  Clear Chat
-</button>
+        <button className="btn btn-danger" onClick={clearChat}>
+          Clear Chat
+        </button>
       </div>
-      
     </div>
   );
 }

@@ -22,10 +22,16 @@ function Profile() {
   });
 
   useEffect(() => {
-    const currentUser =
-      JSON.parse(sessionStorage.getItem("currentUser")) || {};
+    const currentUser = JSON.parse(sessionStorage.getItem("currentUser")) || {};
 
     setUser(currentUser);
+    const firstLogin = sessionStorage.getItem("firstLogin");
+
+    if (firstLogin === "true") {
+      setEditMode(true);
+
+      sessionStorage.removeItem("firstLogin");
+    }
   }, []);
 
   const handleChange = (e) => {
@@ -38,22 +44,13 @@ function Profile() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const users =
-      JSON.parse(localStorage.getItem("users")) || [];
+    const users = JSON.parse(localStorage.getItem("users")) || [];
 
-    const updatedUsers = users.map((u) =>
-      u.email === user.email ? user : u
-    );
+    const updatedUsers = users.map((u) => (u.email === user.email ? user : u));
 
-    localStorage.setItem(
-      "users",
-      JSON.stringify(updatedUsers)
-    );
+    localStorage.setItem("users", JSON.stringify(updatedUsers));
 
-    sessionStorage.setItem(
-      "currentUser",
-      JSON.stringify(user)
-    );
+    sessionStorage.setItem("currentUser", JSON.stringify(user));
 
     alert("Profile Updated Successfully");
 
@@ -65,9 +62,7 @@ function Profile() {
       <div className="container my-5">
         <div className="card shadow-lg border-0">
           <div className="card-body p-5">
-
             <div className="text-center">
-
               <img
                 src={`https://ui-avatars.com/api/?background=0D8ABC&color=fff&size=200&name=${user.name}`}
                 alt="avatar"
@@ -76,16 +71,13 @@ function Profile() {
 
               <h2>{user.name}</h2>
 
-              <p className="text-muted">
-                {user.email}
-              </p>
-
+              <p className="text-muted">{user.email}</p>
             </div>
 
             <hr />
 
             <div className="row">
-                            <div className="col-md-6 mb-3">
+              <div className="col-md-6 mb-3">
                 <h6>Age</h6>
                 <p>{user.age || "-"}</p>
               </div>
@@ -127,14 +119,11 @@ function Profile() {
 
               <div className="col-12 mb-4">
                 <h6>About Me</h6>
-                <p style={{ color: "black" }}>
-                  {user.bio || "-"}
-                </p>
+                <p style={{ color: "black" }}>{user.bio || "-"}</p>
               </div>
             </div>
 
             <div className="d-flex gap-3">
-
               <button
                 className="btn btn-primary flex-fill"
                 onClick={() => setEditMode(true)}
@@ -144,15 +133,11 @@ function Profile() {
 
               <button
                 className="btn btn-success flex-fill"
-                onClick={() =>
-                  navigate("/recommendation")
-                }
+                onClick={() => navigate("/recommendation")}
               >
                 AI Recommendation
               </button>
-
             </div>
-
           </div>
         </div>
       </div>
@@ -162,182 +147,151 @@ function Profile() {
   return (
     <div className="container my-5">
       <div className="card shadow p-4">
-
-        <h2 className="text-center mb-4">
-          Edit Profile
-        </h2>
+        <h2 className="text-center mb-4">Edit Profile</h2>
 
         <form onSubmit={handleSubmit}>
-
           <div className="row">
-                    <div className="col-md-6 mb-3">
-            <label className="form-label">
-              Name
-            </label>
+            <div className="col-md-6 mb-3">
+              <label className="form-label">Name</label>
+
+              <input
+                type="text"
+                className="form-control"
+                name="name"
+                value={user.name}
+                onChange={handleChange}
+              />
+            </div>
+
+            <div className="col-md-6 mb-3">
+              <label className="form-label">Age</label>
+
+              <input
+                type="number"
+                className="form-control"
+                name="age"
+                value={user.age}
+                onChange={handleChange}
+              />
+            </div>
+          </div>
+
+          <div className="mb-3">
+            <label className="form-label">Gender</label>
+
+            <select
+              className="form-select"
+              name="gender"
+              value={user.gender}
+              onChange={handleChange}
+            >
+              <option value="">Choose...</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+            </select>
+          </div>
+
+          <div className="mb-3">
+            <label className="form-label">Favorite Movies</label>
 
             <input
               type="text"
               className="form-control"
-              name="name"
-              value={user.name}
+              name="movies"
+              value={user.movies}
               onChange={handleChange}
             />
           </div>
 
-          <div className="col-md-6 mb-3">
-            <label className="form-label">
-              Age
-            </label>
+          <div className="mb-3">
+            <label className="form-label">Favorite Games</label>
 
             <input
-              type="number"
+              type="text"
               className="form-control"
-              name="age"
-              value={user.age}
+              name="games"
+              value={user.games}
               onChange={handleChange}
             />
           </div>
 
-        </div>
+          <div className="mb-3">
+            <label className="form-label">Favorite Genres</label>
 
-        <div className="mb-3">
-          <label className="form-label">
-            Gender
-          </label>
+            <input
+              type="text"
+              className="form-control"
+              name="genres"
+              value={user.genres}
+              onChange={handleChange}
+            />
+          </div>
 
-          <select
-            className="form-select"
-            name="gender"
-            value={user.gender}
-            onChange={handleChange}
-          >
-            <option value="">Choose...</option>
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
-          </select>
-        </div>
+          <div className="mb-3">
+            <label className="form-label">Favorite Series</label>
 
-        <div className="mb-3">
-          <label className="form-label">
-            Favorite Movies
-          </label>
+            <input
+              type="text"
+              className="form-control"
+              name="series"
+              value={user.series}
+              onChange={handleChange}
+            />
+          </div>
 
-          <input
-            type="text"
-            className="form-control"
-            name="movies"
-            value={user.movies}
-            onChange={handleChange}
-          />
-        </div>
+          <div className="mb-3">
+            <label className="form-label">Favorite Music</label>
 
-        <div className="mb-3">
-          <label className="form-label">
-            Favorite Games
-          </label>
+            <input
+              type="text"
+              className="form-control"
+              name="music"
+              value={user.music}
+              onChange={handleChange}
+            />
+          </div>
 
-          <input
-            type="text"
-            className="form-control"
-            name="games"
-            value={user.games}
-            onChange={handleChange}
-          />
-        </div>
+          <div className="mb-3">
+            <label className="form-label">Hobbies</label>
 
-        <div className="mb-3">
-          <label className="form-label">
-            Favorite Genres
-          </label>
+            <input
+              type="text"
+              className="form-control"
+              name="hobbies"
+              value={user.hobbies}
+              onChange={handleChange}
+            />
+          </div>
 
-          <input
-            type="text"
-            className="form-control"
-            name="genres"
-            value={user.genres}
-            onChange={handleChange}
-          />
-        </div>
+          <div className="mb-3">
+            <label className="form-label">About Me</label>
 
-        <div className="mb-3">
-          <label className="form-label">
-            Favorite Series
-          </label>
+            <textarea
+              rows="4"
+              className="form-control"
+              name="bio"
+              value={user.bio}
+              onChange={handleChange}
+            />
+          </div>
 
-          <input
-            type="text"
-            className="form-control"
-            name="series"
-            value={user.series}
-            onChange={handleChange}
-          />
-        </div>
+          <div className="d-flex gap-3">
+            <button
+              type="button"
+              className="btn btn-secondary flex-fill"
+              onClick={() => setEditMode(false)}
+            >
+              Cancel
+            </button>
 
-        <div className="mb-3">
-          <label className="form-label">
-            Favorite Music
-          </label>
-
-          <input
-            type="text"
-            className="form-control"
-            name="music"
-            value={user.music}
-            onChange={handleChange}
-          />
-        </div>
-
-        <div className="mb-3">
-          <label className="form-label">
-            Hobbies
-          </label>
-
-          <input
-            type="text"
-            className="form-control"
-            name="hobbies"
-            value={user.hobbies}
-            onChange={handleChange}
-          />
-        </div>
-
-        <div className="mb-3">
-          <label className="form-label">
-            About Me
-          </label>
-
-          <textarea
-            rows="4"
-            className="form-control"
-            name="bio"
-            value={user.bio}
-            onChange={handleChange}
-          />
-        </div>
-
-        <div className="d-flex gap-3">
-                  <button
-            type="button"
-            className="btn btn-secondary flex-fill"
-            onClick={() => setEditMode(false)}
-          >
-            Cancel
-          </button>
-
-          <button
-            type="submit"
-            className="btn btn-success flex-fill"
-          >
-            Save Changes
-          </button>
-
-        </div>
-
-      </form>
-
+            <button type="submit" className="btn btn-success flex-fill">
+              Save Changes
+            </button>
+          </div>
+        </form>
+      </div>
     </div>
-  </div>
-);
+  );
 }
 
 export default Profile;

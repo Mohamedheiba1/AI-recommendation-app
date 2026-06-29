@@ -58,9 +58,28 @@ function Register() {
 
     localStorage.setItem("users", JSON.stringify(users));
 
-    alert("Account Created Successfully");
+    const newUser2 = {
+  name: formData.name,
+  email: formData.email,
+  password: formData.password,
+};
 
-    navigate("/");
+users.push(newUser2);
+
+localStorage.setItem("users", JSON.stringify(users));
+
+// تسجيل دخول تلقائي
+sessionStorage.setItem(
+  "currentUser",
+  JSON.stringify(newUser2)
+);
+
+// أول مرة
+sessionStorage.setItem("firstLogin", "true");
+
+alert("Account Created Successfully");
+
+navigate("/profile");
   };
 
   return (
