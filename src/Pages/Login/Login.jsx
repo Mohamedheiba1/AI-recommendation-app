@@ -11,6 +11,19 @@ function Login() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
+  const [message, setMessage] = useState("");
+  const [messageType, setMessageType] = useState("");
+
+  const showMessage = (text, type) => {
+    setMessage(text);
+    setMessageType(type);
+
+    setTimeout(() => {
+      setMessage("");
+      setMessageType("");
+    }, 1500); // تختفي بعد 10 ثواني
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const users = JSON.parse(localStorage.getItem("users")) || [];
@@ -18,11 +31,11 @@ function Login() {
       (u) => u.email === formData.email && u.password === formData.password,
     );
     if (!user) {
-      alert("Invalid Email or Password");
+      showMessage("Invalid Email or Password");
       return;
     }
     sessionStorage.setItem("currentUser", JSON.stringify(user));
-    alert(`Welcome ${user.name}`);
+    showMessage(`Welcome ${user.name}`);
     navigate("/profile");
   };
 
