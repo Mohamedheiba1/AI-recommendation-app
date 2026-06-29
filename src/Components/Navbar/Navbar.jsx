@@ -19,7 +19,7 @@ function Navbar() {
           to="/profile"
         >
           <div style={{width:60,height:60}} className="rec-bot-icon">
-              <i style={{width:40,height:40}} className="bi bi-robot"></i>
+              <i  className="bi bi-robot"></i>
           </div>
           <span>GIRA AI</span>
         </NavLink>
