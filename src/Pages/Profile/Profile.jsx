@@ -191,23 +191,19 @@ function Profile() {
                   onChange={handleChange}
                 />
               </div>
-              {/* <div className="profile-card"> */}
-                {/* Info grid */}
-                {/* <div className="profile-info-grid"> */}
-                  <label className="form-label">Age</label>
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="age"
-                    iconClass="bi bi-person"
-                    colorClass="icon-blue"
-                    label="Age"
-                    value={user.age}
-                    onChange={handleChange}
-                  />
-                </div>
-             
-           
+              <div className="mb-3">
+                <label className="form-label">Age</label>
+                <input
+                  type="number"
+                  className="form-control"
+                  name="age"
+                  value={user.age}
+                  onChange={handleChange}
+                />
+
+                
+              </div>
+            </div>
 
             <div className="edit-grid-3">
               <div className="mb-3">
