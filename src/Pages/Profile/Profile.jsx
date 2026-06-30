@@ -64,7 +64,7 @@ function Profile() {
     setTimeout(() => {
       setMessage("");
       setMessageType("");
-    }, 1000);
+    }, 500);
   };
 
   const handleSubmit = (e) => {
@@ -90,7 +90,7 @@ function Profile() {
 
     setTimeout(() => {
       setEditMode(false);
-    }, 1000); // أو 2000 لو حابب
+    }, 500); 
   };
 
   /* ───── VIEW MODE ───── */

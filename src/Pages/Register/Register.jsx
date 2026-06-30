@@ -12,35 +12,26 @@ function Register() {
     password: "",
     confirmPassword: "",
   });
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const [message, setMessage] = useState("");
-  const [messageType, setMessageType] = useState("");
-
-  const showMessage = (text, type) => {
-    setMessage(text);
-    setMessageType(type);
-
-    setTimeout(() => {
-      setMessage("");
-      setMessageType("");
-    }, 1500); // تختفي بعد 10 ثواني
-  };
   const handleSubmit = (e) => {
     e.preventDefault();
 
     if (formData.password !== formData.confirmPassword) {
-      showMessage("Passwords do not match", "error");
+      alert("Passwords do not match");
       return;
     }
 
     const users = JSON.parse(localStorage.getItem("users")) || [];
 
-    if (users.find((u) => u.email === formData.email)) {
-      showMessage("Email already exists", "error");
+    const emailExists = users.some((user) => user.email === formData.email);
+
+    if (emailExists) {
+      alert("Email already exists");
       return;
     }
 
@@ -64,20 +55,22 @@ function Register() {
     sessionStorage.setItem("currentUser", JSON.stringify(newUser));
     sessionStorage.setItem("firstLogin", "true");
 
-    showMessage("Account Created Successfully", "success");
+    setLoading(true);
 
     setTimeout(() => {
       navigate("/profile");
-    }, 4000);
+    }, 1500);
   };
 
   return (
     <>
-    {message && (
-  <div className={`message ${messageType}`}>
-    {message}
-  </div>
-)}
+      {loading && (
+        <div className="loading-overlay">
+          <div className="spinner-border text-light" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </div>
+        </div>
+      )}
       <div className="reg-page">
         <div className="reg-card">
           <div className="reg-logo">
@@ -98,77 +91,77 @@ function Register() {
             Join our recommendation platform and discover your next favorite!
           </p>
           <div className="reg-underline" />
+          <form onSubmit={handleSubmit}>
+            <label className="reg-label">Full Name</label>
+            <div className="reg-input-wrap">
+              <input
+                className="reg-input"
+                type="text"
+                name="name"
+                placeholder="Enter your name"
+                value={formData.name}
+                onChange={handleChange}
+                required
+              />
+            </div>
 
-          <label className="reg-label">Full Name</label>
-          <div className="reg-input-wrap">
-            <input
-              className="reg-input"
-              type="text"
-              name="name"
-              placeholder="Enter your name"
-              value={formData.name}
-              onChange={handleChange}
-              required
-            />
-          </div>
+            <label className="reg-label">Email</label>
+            <div className="reg-input-wrap">
+              <input
+                className="reg-input"
+                type="email"
+                name="email"
+                placeholder="Enter your email"
+                value={formData.email}
+                onChange={handleChange}
+                required
+              />
+            </div>
 
-          <label className="reg-label">Email</label>
-          <div className="reg-input-wrap">
-            <input
-              className="reg-input"
-              type="email"
-              name="email"
-              placeholder="Enter your email"
-              value={formData.email}
-              onChange={handleChange}
-              required
-            />
-          </div>
+            <label className="reg-label">Password</label>
+            <div className="reg-input-wrap">
+              <input
+                className="reg-input"
+                type={showPassword ? "text" : "password"}
+                name="password"
+                placeholder="Create password"
+                value={formData.password}
+                onChange={handleChange}
+                required
+                style={{ paddingRight: "42px" }}
+              />
+              <span
+                className="reg-eye"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? "👁" : "👁"}
+              </span>
+            </div>
 
-          <label className="reg-label">Password</label>
-          <div className="reg-input-wrap">
-            <input
-              className="reg-input"
-              type={showPassword ? "text" : "password"}
-              name="password"
-              placeholder="Create password"
-              value={formData.password}
-              onChange={handleChange}
-              required
-              style={{ paddingRight: "42px" }}
-            />
-            <span
-              className="reg-eye"
-              onClick={() => setShowPassword(!showPassword)}
-            >
-              {showPassword ? "👁" : "👁"}
-            </span>
-          </div>
+            <label className="reg-label">Confirm Password</label>
+            <div className="reg-input-wrap" style={{ marginBottom: "26px" }}>
+              <input
+                className="reg-input"
+                type={showConfirm ? "text" : "password"}
+                name="confirmPassword"
+                placeholder="Confirm password"
+                value={formData.confirmPassword}
+                onChange={handleChange}
+                required
+                style={{ paddingRight: "42px" }}
+              />
+              <span
+                className="reg-eye"
+                onClick={() => setShowConfirm(!showConfirm)}
+              >
+                {showConfirm ? "👁" : "👁"}
+              </span>
+            </div>
 
-          <label className="reg-label">Confirm Password</label>
-          <div className="reg-input-wrap" style={{ marginBottom: "26px" }}>
-            <input
-              className="reg-input"
-              type={showConfirm ? "text" : "password"}
-              name="confirmPassword"
-              placeholder="Confirm password"
-              value={formData.confirmPassword}
-              onChange={handleChange}
-              required
-              style={{ paddingRight: "42px" }}
-            />
-            <span
-              className="reg-eye"
-              onClick={() => setShowConfirm(!showConfirm)}
-            >
-              {showConfirm ? "👁" : "👁"}
-            </span>
-          </div>
-
-          <button className="reg-btn" onClick={handleSubmit}>
-            Register
-          </button>
-
+            <button type="submit" className="reg-btn" disabled={loading}>
+              {loading ? "Loading..." : "Register"}
+            </button>
+          </form>
           <p className="reg-footer">
             Already have an account? <Link to="/">Login</Link>
           </p>
