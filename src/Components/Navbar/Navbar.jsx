@@ -12,53 +12,69 @@ function Navbar() {
   };
 
   return (
-    <nav 
-    style={{zIndex:100000}}
-    className="navbar navbar-expand-lg custom-navbar">
+    <nav
+      style={{ zIndex: 100000 }}
+      className="navbar navbar-expand-lg custom-navbar"
+    >
       <div className="container">
         <NavLink
           className="navbar-brand d-flex align-items-center gap-2"
           to="/profile"
         >
-        <div style={{paddingTop:15}}>
-          <div style={{width:45,height:45}} className="rec-bot-icon">
-              <i  className="bi bi-robot"></i>
+          <div className="rec-bot-icon">
+            <i className="bi bi-robot"></i>
           </div>
-        </div>
-          <span style={{paddingTop:5}}>GIRA AI</span>
+
+          <span>GIRA AI</span>
         </NavLink>
 
-        <ul className="navbar-nav ms-auto align-items-center">
-          <li className="nav-item">
-            <NavLink
-              to="/profile"
-              className={({ isActive }) =>
-                isActive ? "nav-link active-link" : "nav-link"
-              }
-            >
-              Profile
-            </NavLink>
-          </li>
+        {/* Mobile Button */}
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarMenu"
+        >
+          <span className="navbar-toggler-icon"></span>
+        </button>
 
-          <li className="nav-item">
-            <NavLink
-              to="/recommendation"
-              className={({ isActive }) =>
-                isActive ? "nav-link active-link" : "nav-link"
-              }
-            >
-              Recommendation
-            </NavLink>
-          </li>
+        {/* Menu */}
+        <div
+          className="collapse navbar-collapse justify-content-end"
+          id="navbarMenu"
+        >
+          <ul className="navbar-nav align-items-lg-center">
+            <li className="nav-item">
+              <NavLink
+                to="/profile"
+                className={({ isActive }) =>
+                  isActive ? "nav-link active-link" : "nav-link"
+                }
+              >
+                Profile
+              </NavLink>
+            </li>
 
-          {/* <li className="nav-item mx-2 username">{currentUser?.name}</li> */}
+            <li className="nav-item">
+              <NavLink
+                to="/recommendation"
+                className={({ isActive }) =>
+                  isActive ? "nav-link active-link" : "nav-link"
+                }
+              >
+                Recommendation
+              </NavLink>
+            </li>
 
-          <li className="nav-item ms-2">
-            <button onClick={logout} className="btn logout-btn">
-              Logout
-            </button>
-          </li>
-        </ul>
+            {/* <li className="nav-item username">{currentUser?.name}</li> */}
+
+            <li className="nav-item ms-lg-3 mt-3 mt-lg-0">
+              <button onClick={logout} className="btn logout-btn w-100">
+                Logout
+              </button>
+            </li>
+          </ul>
+        </div>
       </div>
     </nav>
   );
