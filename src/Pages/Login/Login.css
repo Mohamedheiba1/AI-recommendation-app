@@ -134,9 +134,14 @@
 }
 
 .login-forgot a {
-  color: #a855f7;
+  color: #7c3aed;
   font-size: 13px;
   text-decoration: none;
+  transition: all 0.3s;
+}
+.login-forgot a :hover {
+  color: #a855f7;
+  
 }
 
 .login-btn {
