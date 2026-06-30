@@ -139,7 +139,7 @@
   text-decoration: none;
   transition: all 0.3s;
 }
-.login-forgot:hover {
+.login-forgot Link:hover {
   opacity: 0.9;
   
 }
