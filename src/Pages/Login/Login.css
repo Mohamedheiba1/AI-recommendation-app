@@ -139,8 +139,8 @@
   text-decoration: none;
   transition: all 0.3s;
 }
-.login-forgot Link:hover {
-  opacity: 0.9;
+.login-forgota:hover {
+  opacity: 0.8;
   
 }
 

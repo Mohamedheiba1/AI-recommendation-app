@@ -99,7 +99,7 @@ function Login() {
             </div>
 
             <div className="login-forgot">
-              <Link to="/forgot-password">Forgot Password?</Link>
+              <Link className="login-forgota" to="/forgot-password">Forgot Password?</Link>
             </div>
 
             <button type="submit" className="login-btn" disabled={loading}>
@@ -108,7 +108,7 @@ function Login() {
           </form>
 
           <p className="login-footer">
-            Don't have an account? <Link to="/register">Register</Link>
+            Don't have an account? <Link className="login-footera" to="/register">Register</Link>
           </p>
         </div>
       </div>
