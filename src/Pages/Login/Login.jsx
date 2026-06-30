@@ -32,7 +32,7 @@ function Login() {
 
     setTimeout(() => {
       navigate("/profile");
-    }, 1500);
+    }, 1000);
   };
 
   return (
@@ -102,9 +102,6 @@ function Login() {
               <Link to="/forgot-password">Forgot Password?</Link>
             </div>
 
-            {/* <button className="login-btn" onClick={handleSubmit}>
-            <span>→</span> Login
-          </button> */}
             <button type="submit" className="login-btn" disabled={loading}>
               {loading ? "Loading..." : "Register"}
             </button>
