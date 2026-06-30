@@ -163,7 +163,7 @@ function Register() {
             </button>
           </form>
           <p className="reg-footer">
-            Already have an account? <Link to="/">Login</Link>
+            Already have an account? <Link className="reg-footera" to="/">Login</Link>
           </p>
         </div>
       </div>
