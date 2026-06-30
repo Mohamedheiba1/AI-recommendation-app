@@ -64,11 +64,20 @@ function Profile() {
     setTimeout(() => {
       setMessage("");
       setMessageType("");
-    }, 1000); // تختفي بعد 10 ثواني
+    }, 1000);
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    const isEmpty = Object.values(user).some(
+      (value) => String(value).trim() === "",
+    );
+
+    if (isEmpty) {
+      showMessage("Please fill in all fields", "error");
+      return;
+    }
 
     const users = JSON.parse(localStorage.getItem("users")) || [];
 
@@ -199,7 +208,7 @@ function Profile() {
         <div className="edit-card">
           <h2 className="text-center">Edit Profile</h2>
 
-          <form onSubmit={handleSubmit}>
+          <form className="needs-validation" noValidate onSubmit={handleSubmit}>
             <div className="edit-grid-2">
               <div className="mb-3">
                 <label className="form-label">Name</label>
@@ -209,6 +218,7 @@ function Profile() {
                   name="name"
                   value={user.name}
                   onChange={handleChange}
+                  required
                 />
               </div>
               <div className="mb-3">
@@ -219,6 +229,7 @@ function Profile() {
                   name="age"
                   value={user.age}
                   onChange={handleChange}
+                  required
                 />
               </div>
             </div>
@@ -231,6 +242,7 @@ function Profile() {
                   name="gender"
                   value={user.gender}
                   onChange={handleChange}
+                  required
                 >
                   <option value="">Choose...</option>
                   <option value="Male">Male</option>
@@ -245,6 +257,7 @@ function Profile() {
                   name="movies"
                   value={user.movies}
                   onChange={handleChange}
+                  required
                 />
               </div>
               <div className="mb-3">
@@ -255,6 +268,7 @@ function Profile() {
                   name="games"
                   value={user.games}
                   onChange={handleChange}
+                  required
                 />
               </div>
               <div className="mb-3">
@@ -265,6 +279,7 @@ function Profile() {
                   name="genres"
                   value={user.genres}
                   onChange={handleChange}
+                  required
                 />
               </div>
               <div className="mb-3">
@@ -275,6 +290,7 @@ function Profile() {
                   name="series"
                   value={user.series}
                   onChange={handleChange}
+                  required
                 />
               </div>
               <div className="mb-3">
@@ -285,6 +301,7 @@ function Profile() {
                   name="music"
                   value={user.music}
                   onChange={handleChange}
+                  required
                 />
               </div>
               <div className="mb-3">
@@ -295,6 +312,7 @@ function Profile() {
                   name="hobbies"
                   value={user.hobbies}
                   onChange={handleChange}
+                  required
                 />
               </div>
             </div>
@@ -307,6 +325,7 @@ function Profile() {
                 name="bio"
                 value={user.bio}
                 onChange={handleChange}
+                required
               />
             </div>
 
