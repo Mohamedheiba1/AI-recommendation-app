@@ -10,19 +10,7 @@ function Login() {
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-
-  const [message, setMessage] = useState("");
-  const [messageType, setMessageType] = useState("");
-
-  const showMessage = (text, type) => {
-    setMessage(text);
-    setMessageType(type);
-
-    setTimeout(() => {
-      setMessage("");
-      setMessageType("");
-    }, 1500); // تختفي بعد 10 ثواني
-  };
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -34,22 +22,28 @@ function Login() {
     );
 
     if (!user) {
-      showMessage("Invalid Email or Password", "error");
+      alert("Invalid Email or Password", "error");
       return;
     }
 
     sessionStorage.setItem("currentUser", JSON.stringify(user));
 
-    showMessage(`Welcome ${user.name}`, "success");
+    setLoading(true);
 
     setTimeout(() => {
       navigate("/profile");
-    }, 2000); // انتظر ثانيتين ثم انتقل
+    }, 1500);
   };
 
   return (
     <>
-      {message && <div className={`message ${messageType}`}>{message}</div>}
+      {loading && (
+        <div className="loading-overlay">
+          <div className="spinner-border text-light" role="status">
+            <span className="visually-hidden">Loading...</span>
+          </div>
+        </div>
+      )}
       <div className="login-page">
         <div className="login-card">
           <div className="login-logo">
@@ -70,47 +64,51 @@ function Login() {
             Login to continue discovering amazing movies, games and more.
           </p>
           <div className="login-underline" />
+          <form onSubmit={handleSubmit}>
+            <label className="login-label">Email</label>
+            <div className="login-input-wrap">
+              <input
+                className="login-input"
+                type="email"
+                name="email"
+                placeholder="Enter your email"
+                value={formData.email}
+                onChange={handleChange}
+                required
+              />
+            </div>
 
-          <label className="login-label">Email</label>
-          <div className="login-input-wrap">
-            <input
-              className="login-input"
-              type="email"
-              name="email"
-              placeholder="Enter your email"
-              value={formData.email}
-              onChange={handleChange}
-              required
-            />
-          </div>
+            <label className="login-label">Password</label>
+            <div className="login-input-wrap">
+              <input
+                className="login-input"
+                type={showPassword ? "text" : "password"}
+                name="password"
+                placeholder="Enter your password"
+                value={formData.password}
+                onChange={handleChange}
+                required
+                style={{ paddingRight: "42px" }}
+              />
+              <span
+                className="login-eye"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? "👁" : "👁"}
+              </span>
+            </div>
 
-          <label className="login-label">Password</label>
-          <div className="login-input-wrap">
-            <input
-              className="login-input"
-              type={showPassword ? "text" : "password"}
-              name="password"
-              placeholder="Enter your password"
-              value={formData.password}
-              onChange={handleChange}
-              required
-              style={{ paddingRight: "42px" }}
-            />
-            <span
-              className="login-eye"
-              onClick={() => setShowPassword(!showPassword)}
-            >
-              {showPassword ? "👁" : "👁"}
-            </span>
-          </div>
+            <div className="login-forgot">
+              <Link to="/forgot-password">Forgot Password?</Link>
+            </div>
 
-          <div className="login-forgot">
-            <Link to="/forgot-password">Forgot Password?</Link>
-          </div>
-
-          <button className="login-btn" onClick={handleSubmit}>
+            {/* <button className="login-btn" onClick={handleSubmit}>
             <span>→</span> Login
-          </button>
+          </button> */}
+            <button type="submit" className="login-btn" disabled={loading}>
+              {loading ? "Loading..." : "Register"}
+            </button>
+          </form>
 
           <p className="login-footer">
             Don't have an account? <Link to="/register">Register</Link>
