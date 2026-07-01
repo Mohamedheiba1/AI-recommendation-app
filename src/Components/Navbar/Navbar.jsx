@@ -3,7 +3,7 @@ import "./Navbar.css";
 
 function Navbar() {
   const navigate = useNavigate();
-
+  
   const currentUser = JSON.parse(sessionStorage.getItem("currentUser"));
 
   const logout = () => {
